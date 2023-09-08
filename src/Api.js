@@ -71,5 +71,18 @@ export default {
         return json;
     },
 
+    setAppointment: async(userId, service) => {
+        const req = await fetch(`${BASE_API}/user/appointment`, {
+            method: 'POST',
+            headers:{
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({token, id: userId, service})
+        });
+        const json = await req.json();
+        return json;
+    }
+
     
 };

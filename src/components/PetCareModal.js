@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
 
+import Api from '../Api';
+
 import ExpandIcon from '../assets/expand.svg';
 import NavPrevIcon from '../assets/nav_prev.svg'
 import NavNextIcon from '../assets/nav_next.svg'
@@ -116,6 +118,7 @@ const DateList = styled.ScrollView`
 const DateItem = styled.TouchableOpacity`
     width: 45px;
     justify-content: center;
+    align-items: center;
     border-radius: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -155,6 +158,20 @@ const days = [
     'Sab'
 ];
 
+const TimeList = styled.ScrollView``;
+
+const TimeItem = styled.TouchableOpacity`
+    width: 75px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+`;
+
+const TimeItemText = styled.Text`
+    font-size: 16px;
+`;
+
 export default ({show, setShow, user, service}) => {
 
     const navigation = useNavigation();
@@ -168,35 +185,58 @@ export default ({show, setShow, user, service}) => {
 
     useEffect(() => {
         if(user.available){
-
-            let daysInMonth = new Date(selectedYear, selectedMonth+1, 0).getDate();
-            let newListDays = [];
-
-            for(let i=1;i<=daysInMonth; i++){
-                let d = new Date(selectedYear, setSelectedMonth, i);
-                let year = d.getFullYear();
-                let month = d.getMonth() +1 ;
-                let day = d.getDate();
-                month = month < 10 ? '0' +month : month;
-                day = day < 10 ? '0' +day : day;
-                let selDate = `${year}-${month}-${day}`;
+        
+        let daysInMonth = new Date(selectedYear, selectedMonth+1, 0).getDate();
+        let newListDays = [];
+        
+        for(let i=1;i<=daysInMonth;i++){
+            let d = new Date(selectedYear, selectedMonth, i);
+            let year = d.getFullYear();
+            let month = d.getMonth() + 1;
+            let day = d.getDate();
+            month = month < 10 ? '0'+month : month;
+            day = day < 10 ? '0'+day : day;
+            let selDate = `$(year)-$(month)-$(day)`;
             
 
-                let availability = user.available.filter(e=>e.date === selDate);
+            let availability = user.available.filter(e=>e.date === selDate);
+            
 
-                newListDays.push({
-                    status: availability.length > 0 ? true : false,
-                    weekday: days[d.getDay()],
-                    number: i
-                });
-            }
+            newListDays.push({
+                status: availability.length > 0 ? true : false,
+                weekday: days[ d.getDay() ], 
+                number: i
+            });
+              
+       }
 
             setListDays(newListDays);
-            setSelectedMonth(1);
+            setSelectedDay(1);
             setListHours([]);
             setSelectedHour(0);
-      }
-    }, [user, selectedMonth, selectedYear]);
+            
+        }
+    }, [ user, selectedMonth, selectedYear]);
+
+    useEffect(()=>{
+        if(user.available && selectedDay > 0){
+            let d = new Date(selectedYear, selectedMonth, selectedDay);
+            let year = d.getFullYear();
+            let month = d.getMonth() + 1;
+            let day = d.getDate();
+            month = month < 10 ? '0'+month : month;
+            day = day < 10 ? '0'+day : day;
+            let selDate = `$(year)-$(month)-$(day)`;
+
+            let availability = user.available.filter(e=>e.date === selDate);
+
+            if(availability.length > 0){
+                setListHours(availability[0].hours);
+            }
+
+        }
+        setSelectedHour(null);
+    }, [user, selectedDay]);
 
     useEffect(()=>{
         let today = new Date();
@@ -227,8 +267,32 @@ export default ({show, setShow, user, service}) => {
         setShow(false);
     }
 
-    const handleFinishClick = () => {
+    const handleFinishClick = async () => {
+        if(
+            user.id &&
+            service != null
+        ) {
+            
+           /* let res = await Api.setAppointment(
+                user.id,
+                service
+            );
+            if(res.error == ''){
+                
+                setShow(false);
+                navigation.navigate('Appointments');
 
+            } else{ 
+            alert(res.error);
+            
+        }*/
+        setShow(false);
+        navigation.navigate('Appointments');
+
+        
+        }else {
+            alert("Preencha todos os dados");
+        }
     }
 
 
@@ -282,7 +346,11 @@ export default ({show, setShow, user, service}) => {
                         {listDays.map((item, key)=>(
                             <DateItem 
                                 key={key}
-                                onPress={()=>{}}
+                                onPress={()=>item.status ? setSelectedDay(item.number) : null}
+                                style={{
+                                    opacity: item.status ? 1 : 0.5,
+                                    backgroundColor: item.number === selectedDay ? '#D69A3A' : '#fff'
+                                }}
 
                                 >
                                 <DateItemWeekDay>{item.weekday}</DateItemWeekDay>
@@ -292,7 +360,35 @@ export default ({show, setShow, user, service}) => {
                     </DateList>
                 </ModalItem>
 
+                {selectedDay > 0 && listHours.length > 0 &&
+                    <ModalItem>
+                        <TimeList  
+                            horizontal={true}
+                            showsHorizontalScrollIndicator={false}
+                        >
 
+                            {listHours.map((item, key)=>(
+                                    <TimeItem
+                                        key={key}
+                                        onPress={() => setSelectedHour(item)}
+                                        style={{
+                                            backgroundColor: item === setSelectedHour ? '#D69A3A' : '#ffff'
+
+                                        }}
+                                    >
+                                        <TimeItemText
+                                            style={{
+                                                color: item === setSelectedHour ? '##ffff' : '#000'
+                                                
+                                            }}
+                                        >{item}</TimeItemText>
+                                    </TimeItem>
+                            ))}
+
+                        </TimeList> 
+                    </ModalItem>
+
+                }
                 <FinishButton onPress={handleFinishClick}>
                     <FinishButtonText>Finalizar Agendamento</FinishButtonText>
                 </FinishButton>
