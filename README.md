@@ -50,7 +50,7 @@ LOGIN | Nesta tela possuimos o inicio da aplicação onde é possivel logar e/ou
 CADASTRO | Nesta tela possuimos o cadastro um novo login. 
 HOME | Nesta tela possuimos uma lista de todos os cuidadores disponiveis, assim seu nome, pontuação, foto e botão de perfil. Também possuimos um campo de localização, que solicita a permissão no android para verificar a localização. Ao clicar no botão VER PERFIL, ele irá redirecionar para a pagina de serviços do cuidador. É possivel também navegar entre as telas na TOOLBAR customizada, onde se encontram todas as telas da aplicação: HOME, SEARCH, APPOINTMENTS, FAVORITES e PROFILE. 
 SEARCH | Nesta tela possuimos uma lista de todos os cuidadores disponiveis, assim seu nome, pontuação, foto e botão de perfil. Voce pode pesquisar pelo seu cuidador de prefencia.  
-SERVIÇOS | Nesta tela possuimos a lista de serviços do cuidador, assim como o botão de agendamento, foto do cuidador, serviço e preço. Também é possivel ver o TESTIMONIAL passando automaticamente abaixo das listas. Nesta tela também é possivel favoritar o seu cuidador. 
+SERVICES | Nesta tela possuimos a lista de serviços do cuidador, assim como o botão de agendamento, foto do cuidador, serviço e preço. Também é possivel ver o TESTIMONIAL passando automaticamente abaixo das listas. Nesta tela também é possivel favoritar o seu cuidador. 
 APPOINTMENTS | Nesta tela possuimos todos os agendamentos com os cuidadores que já foram realizados e/ou irão ser realizados. 
 FAVORITES | Nesta tela possuimos todos os cuidadores marcados como FAVORITO na tela HOME.
 PROFILE | Nesta tela temos um bem vindo ao usuário logado e um botão de LOGOUT.  
