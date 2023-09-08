@@ -14,9 +14,14 @@ Uma apresentação feita em video e salva no seguinte link do youtube:
 
 https://www.youtube.com/watch?v=1BLgUOzFq4Y
 
+A protipação feita está disponibilizada através do link a seguir:
+
+https://www.figma.com/file/yde2F2vzVPVG3vk9TUOgvs/PETCARE?type=design&node-id=0%3A1&mode=design&t=Yvb9HQ0iBSLeqWqE-1
+
 ### As tecnologias utilizadas foram: 
 Stack   | Versão
 --------- | ------
+FIGMA | 116.6.3
 VSCODE | 1.76.1
 REACT NATIVE | 18.1.0
 METRO | 0.76.7
