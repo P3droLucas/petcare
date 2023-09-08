@@ -28,7 +28,7 @@ ANDROID STUDIO | 2022.1.1 Patch 1
 
 2. Configurar um emulador de Android e instala-lo. 
 
-2.1. https://developer.android.com/studio/run/emulator?hl=pt-br
+     2.1. https://developer.android.com/studio/run/emulator?hl=pt-br
 
 3. Rodar no promtp o comando: npx react-native run-android
 
