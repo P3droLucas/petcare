@@ -134,7 +134,7 @@ export default () => {
 
             <BackButton onPress={handleBackButton}>
                         <BackIcon width='44' height= '44' fill= '#fff' />
-                        <TextButton>Favoritos</TextButton>
+                        <TextButton>Agendamentos com Petcares!</TextButton>
                     </BackButton>
         </Container>
     );

@@ -70,10 +70,11 @@ export const BackButton = styled.TouchableOpacity`
 `;
 
 export const TextButton = styled.Text`
-    width: 100px;
+    width: 300px;
     font-size: 18px;
     font-weight: bold;
     color: #FFFFFF;
+    
     
     
 `;

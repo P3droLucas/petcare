@@ -110,7 +110,7 @@ export default () => {
 
                 <LocationArea>
                     <LocationInput 
-                    placeholder='Digite o nome do barbeiro'
+                    placeholder='Digite o nome do seu PetCare!'
                     placeholderTextColor="#ffffffff"
                     /*value={locationText}
                     onChangeText={t=>setLocationText(t)}

@@ -1,7 +1,14 @@
 import React from 'react';
 import { Text , Button} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import {Container} from './styles';
+import {
+    
+    Container,
+    TextProfile,
+    TextHome
+  
+
+} from './styles';
 
 import Api from '../../Api';
 
@@ -18,8 +25,9 @@ export default () => {
 
     return(
         <Container>
-            <Text>Profile</Text>
-            <Button title='Sair' onPress={handelLogoutClick} />
+            <TextProfile>Olá Pedro Lucas, bem vindo! </TextProfile>
+           
+            <Button title='Clique aqui para Sair' onPress={handelLogoutClick} />
         </Container>
     );
 }
